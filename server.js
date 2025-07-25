@@ -12,7 +12,12 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Connect to MongoDB
-connectDB();
+console.log('Attempting to connect to MongoDB...');
+connectDB().then(() => {
+  console.log('MongoDB connection successful');
+}).catch(err => {
+  console.error('MongoDB connection error:', err);
+});
 
 // Middleware
 app.use(cors());
